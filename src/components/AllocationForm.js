@@ -10,7 +10,14 @@ const AllocationForm = (props) => {
     const [action, setAction] = useState('');
 
     const submitEvent = () => {
-        if(cost > remaining) {
+        if(cost === '' || name === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Please insert a department and a value.`,
+            });
+        }
+        else if(cost > remaining) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -19,46 +26,47 @@ const AllocationForm = (props) => {
             setCost("");
             return;
         }
-
-        const expense = {
-            name: name,
-            cost: parseInt(cost),
-        };
-        if(action === "Reduce") {
-            dispatch({
-                type: 'RED_EXPENSE',
-                payload: expense,
-            });
-        }
         else {
-            dispatch({
-                type: 'ADD_EXPENSE',
-                payload: expense,
-            });
+            const expense = {
+                name: name,
+                cost: parseInt(cost),
+            };
+
+            if(action === "Reduce") {
+                dispatch({
+                    type: 'RED_EXPENSE',
+                    payload: expense,
+                });
+            }
+            else {
+                dispatch({
+                    type: 'ADD_EXPENSE',
+                    payload: expense,
+                });
+            }
         }
     };
 
     return (
-        <div className='row text-center allocation'>
-            <h2>Allocation Form</h2>
-            <label className="input-group-text" htmlFor="department">Department:</label>
+        <div className='row allocation'>
+            <h2 className='text-center'>Allocation Form</h2>
+            <label className="h5" htmlFor="department">Department:</label>
             <select className="form-select" id="department" onChange={(event) => setName(event.target.value)}>
-                <option defaultValue disabled>Choose...</option>
-                <option value="Marketing" name="marketing"> Marketing</option>
+                <option defaultValue>Choose...</option>
+                <option value="Marketing" name="Marketing">Marketing</option>
                 <option value="Sales" name="sales">Sales</option>
-                <option value="Finance" name="finance">Finance</option>
-                <option value="HR" name="hr">HR</option>
+                <option value="Finances" name="finances">Finances</option>
+                <option value="Human Resources" name="hr">Human Resources</option>
                 <option value="IT" name="it">IT</option>
-                <option value="Admin" name="admin">Admin</option>
             </select>
-            <label className="input-group-text" htmlFor="allocation">Allocation:</label>
+            <label className="h5" htmlFor="allocation">Allocation:</label>
             <select className="form-select" id="allocation" onChange={(event) => setAction(event.target.value)}>
                 <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
             </select>
+            <label className="h5" htmlFor="cost">Value:</label>
             <input
                 className='form-control'
-                required='required'
                 type='number'
                 id='cost'
                 value={cost}

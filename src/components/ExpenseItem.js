@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseItem = (props) => {
-    const { dispatch } = useContext(AppContext);
+    const { dispatch, currency } = useContext(AppContext);
 
     const handleDeleteExpense = () => {
         dispatch({
@@ -26,7 +26,7 @@ const ExpenseItem = (props) => {
     return (
         <tr>
             <td>{props.name}</td>
-            <td>£{props.cost}</td>
+            <td>{currency}{props.cost}</td>
             <td><button className='btn btn-outline-secondary' onClick={event=> increaseAllocation(props.name)}>+</button></td>
             <td><i class="fas fa-times text-danger" onClick={handleDeleteExpense} style={{cursor:"pointer"}}></i></td>
         </tr>
