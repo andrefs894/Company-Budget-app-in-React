@@ -1,0 +1,23 @@
+.allocation {
+  margin: 5% 30%
+}
+
+.allocation input, select {
+  margin:20px 0
+}
+
+.container .title {
+  background-color:rgb(227, 227, 227);
+  margin: 2% 0;
+  padding: 2% 0;
+  border-radius: 5px;
+}
+
+.container .table {
+  margin: 1% 0;
+  border-radius: 7px;
+}
+
+.container .table td {
+  padding:1% 3%;
+}
