@@ -7,6 +7,8 @@ import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
 import AllocationForm from './components/AllocationForm';
 import { AppProvider } from './context/AppContext';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const App = () => {
     return (
@@ -26,15 +28,19 @@ const App = () => {
                         <ExpenseTotal />
                     </div>
                 </div>
-                <div className='row table'>
-                    <div className='col'>
-                        <ExpenseList />
-                    </div>
-                </div>
-                <div className='row form'>
-                    <div className='col'>
-                        <AllocationForm />
-                    </div>
+                <div className='row'>
+                    <Tabs>
+                        <TabList>
+                            <Tab>Allocation Table</Tab>
+                            <Tab>Allocation Form</Tab>
+                        </TabList>
+                        <TabPanel>
+                            <ExpenseList />
+                        </TabPanel>
+                        <TabPanel>
+                            <AllocationForm />
+                        </TabPanel>
+                    </Tabs>
                 </div>
             </div>
         </AppProvider>

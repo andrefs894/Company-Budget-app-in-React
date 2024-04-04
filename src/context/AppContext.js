@@ -64,6 +64,9 @@ export const AppReducer = (state, action) => {
         case 'SET_BUDGET':
             action.type = "DONE";
             state.budget = action.payload;
+            state.expenses.forEach(element => {
+                element.cost = 0;
+            });
 
             return {
                 ...state,

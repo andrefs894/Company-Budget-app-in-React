@@ -22,9 +22,9 @@
 }
 
 .container .allocation label, input, select, button {
-  margin:3% 0
+  margin:2% 0
 }
 
 .container .allocation button {
-  margin:5% 0 0 0;
+  margin:2% 0 0 0;
 }
